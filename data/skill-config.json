@@ -1,0 +1,127 @@
+{
+  "skill_meta": {
+    "name": "zhaofei-rider-claim",
+    "version": "1.0.0",
+    "license": "MIT",
+    "domain": "外卖骑手事故理赔",
+    "supported_platforms": ["美团", "饿了么", "京东", "达达", "顺丰同城"],
+    "rider_types": ["专送", "众包"]
+  },
+  "accident_types": [
+    {
+      "id": "traffic",
+      "name": "交通事故",
+      "subtypes": ["机动车事故", "非机动车事故", "单方事故", "骑手有责事故"]
+    },
+    {
+      "id": "work_injury",
+      "name": "工伤",
+      "subtypes": ["送餐途中", "站点内", "上下班途中"]
+    },
+    {
+      "id": "insurance",
+      "name": "保险拒赔",
+      "subtypes": ["骑手意外险", "雇主责任险", "附加险", "新职伤"]
+    }
+  ],
+  "fee_schedule": {
+    "currency": "CNY",
+    "model": "post_payment",
+    "items": [
+      {"service": "交通事故理赔", "rate_min": 0.10, "rate_max": 0.20},
+      {"service": "工伤赔偿", "rate_min": 0.10, "rate_max": 0.20},
+      {"service": "保险拒赔维权", "rate_min": 0.10, "rate_max": 0.20},
+      {"service": "个案代理起价", "fixed": 2000}
+    ],
+    "products": [
+      {"tier": "入门资料包", "price_min": 29, "price_max": 49},
+      {"tier": "年度会员", "price_min": 199, "price_max": 399},
+      {"tier": "个案代理", "price_min": 2000}
+    ],
+    "ceiling_rate": 0.30
+  },
+  "key_cases": [
+    {
+      "id": "ren_baodong",
+      "name": "任保东案",
+      "case_no": "(2025)冀0626民初5112号",
+      "amount": 286000,
+      "platform": "达达",
+      "highlight": "推翻配送+60分钟特别约定，免责条款无效",
+      "tier": "milestone"
+    },
+    {
+      "id": "jd_crowd",
+      "name": "京东众包维权案",
+      "amount_paid": 12000,
+      "amount_due": 60000,
+      "amount_gap": 50000,
+      "highlight": "保额2%敷衍赔付违反GB/T44893-2024十级伤残10%国标"
+    },
+    {
+      "id": "yang_tao",
+      "name": "杨韬附加险案",
+      "case_date": "2025-10-27",
+      "location": "南京江宁",
+      "amount": 49500,
+      "highlight": "首个附加险理赔成功案例"
+    },
+    {
+      "id": "zheng_qiman",
+      "name": "郑琪蔓案",
+      "insurer": "泰康",
+      "amount": 84000,
+      "highlight": "保险谈判 + 伤残鉴定标准案例"
+    },
+    {
+      "id": "yang_jia",
+      "name": "阳佳案",
+      "platform": "饿了么",
+      "city": "苏州",
+      "amount_work_injury": 28000,
+      "amount_traffic": 36000,
+      "highlight": "工伤+交通事故双轨并行"
+    },
+    {
+      "id": "nuer_abula",
+      "name": "努尔阿卜拉案",
+      "platform": "美团",
+      "city": "和田",
+      "insurance_paid": 26000,
+      "service_fee": 7800,
+      "service_fee_rate": 0.30,
+      "net_to_rider": 8050,
+      "highlight": "少数民族跨区维权 + 服务费30%上限"
+    }
+  ],
+  "legal_refs": [
+    {"law": "保险法", "article": "第17条", "summary": "免责条款必须明确说明，否则不产生效力"},
+    {"law": "保险法司法解释二", "article": "第9条", "summary": "电子签收不构成对免责条款的明确说明"},
+    {"law": "国家标准", "article": "GB/T44893-2024", "summary": "伤残等级与对应保额赔付比例（十级=10%）"},
+    {"law": "工伤保险条例", "article": "第14-17条", "summary": "工伤认定情形 + 申请时效（单位30日/个人1年）"},
+    {"law": "民法典", "article": "第1179条", "summary": "人身损害赔偿范围"}
+  ],
+  "timing": {
+    "site_manager_report_hours": 48,
+    "self_report_crowd_hours": 24,
+    "work_injury_company_days": 30,
+    "work_injury_personal_years": 1,
+    "arbitration_years": 1,
+    "civil_litigation_years": 3,
+    "rebuttal_appraisal_days": 15
+  },
+  "output_limits": {
+    "customer_service_chars": 150,
+    "douyin_comment_chars": 100,
+    "case_initial_judgment_chars": 300
+  },
+  "escalate_to_human": [
+    "醉驾",
+    "死亡",
+    "重伤危及生命",
+    "跨省+少数民族+复杂伤情",
+    "已起诉中",
+    "已签和解",
+    "涉案金额>500000"
+  ]
+}
